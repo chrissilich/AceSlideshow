@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title></title>
+
+		<!-- if you have jQuery on the page, it will use that for animation! -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script-->
+		<script type="text/javascript" src="AceSlideshow.js"></script>
+		
+		<!-- if you have TweenLite or TweenMax on the page, it will use that for animation! -->
+		<!--script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/plugins/CSSPlugin.min.js"></script>
+		<cript src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/easing/EasePack.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenLite.min.js"></script-->
+		
+		<style>
+			#indicators a {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background-color: red;
+				margin: 5px;
+			}
+			#indicators a.active {
+				background-color: blue;
+			}
+		</style>
+
+	</head>
+	<body>
+		
+
+
+
+		No frills:
+		<div id="simpleslideshow" style="position: relative; height: 400px;"></div>
+		<script>
+			// super simple
+			Ace.slideshow({ 
+				element: "simpleslideshow",
+				slides: ["slide1.png", "slide2.png", "slide3.png", "slide4.png"] // just the slide list. that's it.
+			});
+		</script>
+
+		<br /><br /><br /><br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+		The Usual Suspects/Features: (linked images, alt text, timing changed, etc):
+		<div id="mediumslideshow" style="position: relative; height: 400px;"></div>
+		<script>
+			// medium complexity:
+			Ace.slideshow({
+				element: 			"mediumslideshow",
+				debug: 				true,	// tells you if you're about to do something crazy. I suggest leaving this true. default: true
+				fade_time: 			1500,	// fade animation length, ms
+				time_between: 		2500,	// time between slide transitions, ms
+				shuffle: 			true,	// shuffle the slides? default: false
+				
+				// MEDIUM SLIDE LIST OPTIONS
+				slides: [
+					{
+						src: 		"slide1.png", 	// the image's source filename
+						alt: 		"Alt text!", 	// the "alternate text" for that slide. for the visually impaired and hoverers. optional.
+						href: 		"slide1.png", 	// link that clicking on the slide will take you to. optional.
+						new_window: true			// decides if the link should open in a new window. optional. default: false
+					},
+					{
+						src: 		"slide2.png", 
+						alt: 		"Alt text!", 
+						href: 		"slide2.png", 
+						new_window: false
+					},
+					{
+						src: 		"slide3.png", 
+						alt: 		"Alt text!", 
+						href: 		"slide3.png", 
+						new_window: true
+					},
+					{
+						src: 		"slide4.png", 
+						alt: 		"Alt text!", 
+						href: 		"slide4.png", 
+						new_window: false
+					}
+				]
+			})
+		</script>
+
+		<br /><br /><br /><br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		Kitchen Sink Example: linked images, alt text, timing changed, preloading, looping options, title and other fields, pause on mouse over, and indicators (that you have to style yourself)
+
+		<h4 id="title" style="font-size: 14pt; font-weight: bold; "></h4>
+		<p id="credit" style="font-style: italic; "></p>
+		<p id="description"></p>
+		<p id="something"></p>
+		<div id="complexslideshow" style="position: relative; height: 400px;"></div>
+		<div id="indicators"></div>
+		<script>
+			// Complex slideshow
+
+			Ace.slideshow({
+				// OPTIONS FOR BASIC SLIDESHOWS
+				element: 			"complexslideshow", // element reference or ID string for the element where the slides themselves will appear
+				debug: 				true,	// tells you if you're about to do something crazy. I suggest leaving this true. default: true
+				fade_time: 			1500,	// fade animation length, ms
+				time_between: 		2500,	// time between slide transitions, ms
+				shuffle: 			true,	// shuffle the slides? default: false
+				random_start: 		true,	// start with a random slide? default: false
+				preload: 			true,	// after loading and showing the first slide, preload the rest immediately? default: true
+				loop: 				false,	// after the last slide, loop back to the first and continue? default: true
+				mouse_over_pause: 	true,	// don't let the slideshow advance while the user's mouse is over it? default: false
+				
+				// OPTIONS FOR SLIDESHOWS WITH LOTS OF EXTRA DATA
+				title_element: 		"title", 		// element reference or ID string for the element where the slide's title will appear
+				other_1_element: 	"credit",		// element reference or ID string for the element where the another bit of text about the slide will appear
+				other_2_element: 	"description",	// element reference or ID string for the element where the another bit of text about the slide will appear
+				other_3_element: 	"something",	// element reference or ID string for the element where the another bit of text about the slide will appear
+
+				indicator_element: 	"a",			// element type that should be generated for indicators. the current one will have the class ".active"
+				indicator_container:"indicators",	// element reference or ID string for the element where the indicators will be created
+
+				// MORE COMPLEX SLIDE LIST
+				// src is the image's source filename
+				// alt is the "alternate text" for that slide. for the visually impaired and hoverers. optional.
+				// href is the link that clicking on the slide will take you to. optional.
+				// new_window decides if the link should open in a new window. optional. default: false
+				// title is the text that will be put in the title_element, defined above. optional.
+				// other_1/2/3 is the text that will be put in the other_1/2/3_element, defined above. optional.
+				slides: [
+					{
+						src: 		"slide1.png", 
+						alt: 		"Alt text!", 
+						href: 		"slide1.png", 
+						new_window: true,	 
+						title: 		"S1 Title", 
+						other_1: 	"leonardo", 		
+						other_2: 	"first slide",  
+						other_3: 	"something"
+					},
+					{
+						src: 		"slide2.png", 
+						alt: 		"Alt text!", 
+						href: 		"slide2.png", 
+						new_window: false, 
+						title: 		"S2 Title", 
+						other_1: 	"michaelangelo", 
+						other_2: 	"second slide", 
+						other_3: 	"something else"
+					},
+					{
+						src: 		"slide3.png", 
+						alt: 		"Alt text!", 
+						href: 		"slide3.png", 
+						new_window: true,	 
+						title: 		"S3 Title", 
+						other_1: 	"raphael", 		
+						other_2: 	"third slide",  
+						other_3: 	"something new"
+					},
+					{
+						src: 		"slide4.png", 
+						alt: 		"Alt text!", 
+						href: 		"slide4.png", 
+						new_window: false, 
+						title: 		"S4 Title", 
+						other_1: 	"donatello", 	
+						other_2: 	"fourth slide", 
+						other_3: 	"nothing"
+					}
+				]
+			})
+
+	
+		</script>
+
+		<br /><br /><br /><br />
+
+
+
+
+
+
+
+
+
+
+		Oh yeah, and you can have as many as you want on one page, and they don't interfere with each other.
+
+		<br /><br /><br /><br />
+
+	</body>
+</html>
